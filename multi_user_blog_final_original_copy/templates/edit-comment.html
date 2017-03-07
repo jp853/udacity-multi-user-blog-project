@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form class="ui form" method="post" autocomplete="on">
+      <div class="field">
+        <label>Edit Your Comment</label>
+        <textarea type="text" name="content">{{content}}</textarea>
+      </div>
+      <div class="ui large buttons">
+          <button class="ui button" onClick="history.go(-1);return true;">Back</button>
+        <div class="or"></div>
+          <button class="ui green button">Publish Edited Comment</button>
+      </div>
+      {% if error %}
+          <div class="ui form warning">
+            <div class="ui warning message">
+              <div class="header">Something went wrong</div>
+              <ul class="list">
+                <li>{{error}}</li>
+              </ul>
+            </div>
+          </div>
+      {% endif %}
+    </form>
+
+{% endblock %}

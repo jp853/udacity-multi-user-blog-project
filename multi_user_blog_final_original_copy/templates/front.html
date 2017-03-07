@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% block jumbotron %}
+    {% include "jumbotron.html" %}
+    {% endblock %}
+    {% for p in posts %}
+        {% if user %}
+            {{ p.render(user.key().id()) | safe }}
+        {% else %}
+            {{ p.render(None) | safe }}
+        {% endif %}
+    {% endfor %}
+
+
+{% endblock %}

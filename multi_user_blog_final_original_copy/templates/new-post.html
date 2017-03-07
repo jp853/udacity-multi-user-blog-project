@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form class="ui form" method="post" autocomplete="on">
+      <div class="field">
+          <label>Title</label>
+          <input placeholder="title for your idea" type="text" name="subject" value="{{subject}}">
+      </div>
+      <div class="field">
+        <label>Content</label>
+        <textarea placeholder="What's on your mind?" type="text" name="content">{{content}}</textarea>
+      </div>
+      <button class="ui primary basic button">Submit</button>
+      {% if error %}
+          <div class="ui form warning">
+            <div class="ui warning message">
+              <div class="header">Something went wrong</div>
+              <ul class="list">
+                <li>{{error}}</li>
+              </ul>
+            </div>
+          </div>
+      {% endif %}
+    </form>
+
+{% endblock %}

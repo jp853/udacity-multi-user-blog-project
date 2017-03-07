@@ -1,0 +1,28 @@
+<div class="jumbotron">
+  {% if user %}
+    <h3>Hi {{user.name}}</h3>
+    <p>Give the Blog Project an idea that will
+       be judged!
+    </p>
+    <p><a class="btn btn-primary btn-lg" href="/newpost" role="button">Ok, I will!</a></p>
+  {% else %}
+    <h1>The Blog Project</h1>
+    <p>A blog site that consists of multiple front
+     end frameworks to deliver a unique user
+     experience. All ideas are gauranteed to be
+     mocked, judged and made fun of! Please login
+     to create, like, comment and edit posts.
+    </p>
+    <p>
+        <div class="ui large buttons">
+          <a href="/login">
+              <button class="ui blue button">Login</button>
+          </a>
+          <div class="or"></div>
+          <a href="/signup">
+              <button class="ui green button" href="/signup">Signup</button>
+          </a>
+        </div>
+    </p>
+  {% endif %}
+</div>
