@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="ui two column middle aligned very relaxed stackable grid">
+      <div class="column">
+        {% if error %}
+            <div class="ui warning message">
+                <div class="header">Something went wrong! Double check your information!</div>
+                    <ul class="list">
+                        <li>{{error}}</li>
+                    </ul>
+            </div>
+        {% endif %}
+        <div class="ui form">
+            <form method="post">
+                <div class="field">
+                    <h2>Sign Up Page!</h2>
+                    <label>Create A Username</label>
+                    <div class="ui left icon input">
+                        <input type="text" name="username" placeholder="Make it a clever one ;-)">
+                        <i class="user icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Create A Password</label>
+                    <div class="ui left icon input">
+                        <input type="password" name="password" placeholder="Password">
+                        <i class="lock icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Verify Password</label>
+                    <div class="ui left icon input">
+                        <input type="password" name="verify" placeholder="Make sure the passwords match!">
+                        <i class="lock icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <div class="ui left icon input">
+                        <input type="text" name="email" placeholder="Email (optional)" value="{{email}}">
+                        <i class="mail icon"></i>
+                    </div>
+                </div>
+                <input class="ui large fluid blue submit button" type="submit" value="Submit">
+            </form>
+        </div>
+      </div>
+      <div class="center aligned column">
+        <div>
+            <p>Already have an account?</p>
+        </div>
+        <a href="/login">
+            <div class="ui large green labeled icon button">
+                <i class="signup icon"></i>
+                Login
+            </div>
+        </a>
+      </div>
+    </div>
+
+{% endblock %}

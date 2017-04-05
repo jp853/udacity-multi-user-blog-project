@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if user %}
+        {{post.render(user.key().id()) | safe}}
+    {% else %}
+        {{ post.render(None) | safe }}
+    {% endif %}
+
+    {% if user and user.key().id() == post.user_id %}
+        <div class="container">
+            <a href="/{{post.key().id()}}/delete/{{post.user_id}}">
+                <div>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </a>
+            <a href="/{{post.key().id()}}/edit">
+                <div>
+                    <button type="button" class="btn btn-info">Edit</button>
+                </div>
+            </a>
+        </div>
+
+    {% elif user %}
+        <div class="container">
+            <a href="/{{post.key().id()}}/unlike">
+                <div>
+                    <button type="button" class="btn btn-warning">Dislike</button>
+                </div>
+            </a>
+        </div>
+    {% endif %}
+
+    {% if user %}
+        <div class="container">
+            <a href="/{{post.key().id()}}/addcomment/{{user.key().id()}}">
+                <div>
+                    <button type="button" class="btn btn-primary">Comment</button>
+                </div>
+            </a>
+        </div>
+    {% endif %}
+
+    <div class="container back">
+        <a href="/">
+            <button class="ui button">Back</button>
+        </a>
+    </div>
+    <div class="comments">
+        {% for c in comments %}
+            <div class="comment">
+                <div class="container">
+                    <div>
+                    </div>
+                    <div class="container">
+                        <div class="author_comment">{{c.user_name}}</div>
+                        <div class="date_comment">{{c.created.strftime("%b %d, %Y")}}</div>
+                    </div>
+                </div>
+                <p class="content_comment">
+                    {{ c.content }}
+                </p>
+                <div class="clearfix">
+                    {% if user and user.key().id() == c.user_id %}
+                        <a href="/{{post.key().id()}}/{{c.user_id}}/deletecomment/{{ c.key().id() }}">
+                            <div class="delete_comment">
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </div>
+                        </a>
+                        <a href="/{{post.key().id()}}/{{c.user_id}}/editcomment/{{ c.key().id() }}">
+                            <div class="edit_comment">
+                                <button type="button" class="btn btn-info">Edit</button>
+                            </div>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="container back">
+        <a href="/">
+            <button class="ui button">Back</button>
+        </a>
+    </div>
+
+    <i>{{error}}</i>
+
+{% endblock %}
